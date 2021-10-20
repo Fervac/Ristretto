@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
         // initially, the temporary vector should equal the player's position
         Vector3 clampedPosition = transform.position;
         // Now we can manipulte it to clamp the y element
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -7f, 7f);
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -7.2f, 7.2f);
         // re-assigning the transform's position will clamp it
         transform.position = clampedPosition;
 

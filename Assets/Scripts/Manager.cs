@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     public List<GameObject> bricks;
+    public GameObject Victory;
 
     #region SINGLETON PATTERN
     public static Manager _instance;
@@ -29,6 +30,11 @@ public class Manager : MonoBehaviour
     }
     #endregion
 
+    public void SwitchShowWindow(GameObject window)
+    {
+        window.SetActive(!window.activeInHierarchy);
+    }
+
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
@@ -39,6 +45,10 @@ public class Manager : MonoBehaviour
         if (bricks.Count == 0)
         {
             Debug.Log("You win");
+            SwitchShowWindow(Victory);
+
+            // STOP GAME
+            // Retry option
         }
     }
 
