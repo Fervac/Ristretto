@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
+    public List<GameObject> bricks;
+
     #region SINGLETON PATTERN
     public static Manager _instance;
     public static Manager Instance
@@ -30,6 +32,14 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
+    }
+
+    public void CheckWin()
+    {
+        if (bricks.Count == 0)
+        {
+            Debug.Log("You win");
+        }
     }
 
     public void Retry()
