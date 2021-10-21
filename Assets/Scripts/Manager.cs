@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
     public List<GameObject> bricks;
-    public GameObject Victory;
+    public GameObject victory;
+    public GameObject countdownPanel;
+
+    public Material red;
+    public Material yellow;
+    public Material green;
+    public Material blue;
 
     #region SINGLETON PATTERN
     public static Manager _instance;
@@ -38,17 +45,15 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
+        Time.timeScale = 1;
     }
 
     public void CheckWin()
     {
         if (bricks.Count == 0)
         {
-            Debug.Log("You win");
-            SwitchShowWindow(Victory);
-
-            // STOP GAME
-            // Retry option
+            SwitchShowWindow(victory);
+            Time.timeScale = 0;
         }
     }
 
