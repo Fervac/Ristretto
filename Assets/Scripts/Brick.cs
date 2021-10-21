@@ -11,6 +11,7 @@ public class Brick : MonoBehaviour
 
     private void Awake()
     {
+        // Different brick types need a different number of hits to get destroyed
         switch(type)
         {
             case Type.red:
@@ -41,18 +42,20 @@ public class Brick : MonoBehaviour
         SetColor();
     }
 
+    // Called every time the brick gets hit
     public void Break()
     {
         life -= 1;
         SetColor();
 
-        if (life <= 0)
+        if (life == 0)
         {
             Manager.Instance.bricks.Remove(this.gameObject);
             Destroy(this.gameObject);
         }
     }
 
+    // Color changes according to 'life' points
     private void SetColor()
     {
         if (life == 4)

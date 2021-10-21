@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
     public Material green;
     public Material blue;
 
+    // Make Manager a singleton
     #region SINGLETON PATTERN
     public static Manager _instance;
     public static Manager Instance
@@ -37,6 +38,7 @@ public class Manager : MonoBehaviour
     }
     #endregion
 
+    // Hide / Show window
     public void SwitchShowWindow(GameObject window)
     {
         window.SetActive(!window.activeInHierarchy);
@@ -50,6 +52,7 @@ public class Manager : MonoBehaviour
 
     public void CheckWin()
     {
+        // Check if all bricks are destroyed
         if (bricks.Count == 0)
         {
             SwitchShowWindow(victory);

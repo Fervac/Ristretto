@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     private Touch touch;
     private Vector2 touchSlide;
+    private float speed = 12f;
 
     private void Update()
     {
@@ -16,7 +17,6 @@ public class Player : MonoBehaviour
     private void CheckInput()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
-        float speed = 12f;
         float xMove = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         transform.Translate(xMove, 0f, 0f);
         // initially, the temporary vector should equal the player's position

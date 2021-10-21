@@ -42,10 +42,12 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
+        // Continuously moves the ball
         transform.Translate(direction * Time.deltaTime) ;
         velocity = ((transform.position - new Vector3(previous.x, previous.y, 0.0f))) / Time.deltaTime;
         previous = transform.position;
 
+        // Continuoulsy fires a raycast toward where the ball is going
         FireRaycast();
     }
 
@@ -65,20 +67,18 @@ public class Ball : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
             {
-                //Debug.DrawLine(transform.position, hit.point);
-
                 if (hit.distance <= 0.5f)
                 {
+                    // Physic is handled by Reflect since rigidbodies are forbidden
                     direction = Vector2.Reflect(velocity, hit.normal);
 
+                    // Handle brick collision
                     if (hit.collider.gameObject.CompareTag("Brick"))
                     {
                         hit.collider.gameObject.GetComponent<Brick>().Break();
                         Manager.Instance.CheckWin();
                     }
                 }
-                //Vector2 tmp = Vector2.Reflect(velocity, hit.normal);
-                //Debug.DrawLine(hit.point, hit.point + new Vector3(tmp.x, tmp.y, 0.0f));
             }
     }
 }
