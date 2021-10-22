@@ -9,6 +9,7 @@ public class Manager : MonoBehaviour
     public List<GameObject> bricks;
     public GameObject victory;
     public GameObject countdownPanel;
+    public GameObject retryPanel;
 
     public Material red;
     public Material yellow;
@@ -58,6 +59,12 @@ public class Manager : MonoBehaviour
             SwitchShowWindow(victory);
             Time.timeScale = 0;
         }
+    }
+
+    public void HandleDeath()
+    {
+        Time.timeScale = 0;
+        SwitchShowWindow(retryPanel);
     }
 
     public void Retry()

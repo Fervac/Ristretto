@@ -53,13 +53,14 @@ public class Ball : MonoBehaviour
 
     private void LateUpdate()
     {
-        CheckDeath();
+        if (Time.timeScale != 0)
+            CheckDeath();
     }
 
     private void CheckDeath()
     {
         if (transform.position.y < -5f)
-            Manager.Instance.Retry();
+            Manager.Instance.HandleDeath();
     }
 
     private void FireRaycast()

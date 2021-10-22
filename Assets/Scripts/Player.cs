@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Touch touch;
     private Vector2 touchSlide;
     private float speed = 12f;
+    private float mobileSpeed = 1f;
 
     private void Update()
     {
@@ -37,18 +38,16 @@ public class Player : MonoBehaviour
         {
             touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Ended)
+            if (touch.phase == TouchPhase.Moved) //|| touch.phase == TouchPhase.Ended)
             {
-                touchSlide = touch.deltaPosition;
-                Vector3 touchPosition;
-                touchPosition.Set(touchSlide.x, transform.position.y, touchSlide.y);
-                transform.position = Vector3.Lerp(transform.position, touchPosition, Time.deltaTime *speed);
+                var x = touch.deltaPosition.x * mobileSpeed * Time.deltaTime;
+                transform.Translate(new Vector3(x, 0, 0));
                 // initially, the temporary vector should equal the player's position
-                Vector3 clampedPosition = transform.position;
+                Vector3 clampPosition = transform.position;
                 // Now we can manipulte it to clamp the y element
-                clampedPosition.x = Mathf.Clamp(clampedPosition.x, -7.2f, 7.2f);
+                clampPosition.x = Mathf.Clamp(clampPosition.x, -7.2f, 7.2f);
                 // re-assigning the transform's position will clamp it
-                transform.position = clampedPosition;
+                transform.position = clampPosition;
             }
         }
 #endif
